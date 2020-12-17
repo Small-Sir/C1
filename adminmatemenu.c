@@ -415,24 +415,21 @@ void mateadd(MATE *pm)
 		  break;
 		}
 	  }
+	  if(flag1==1)//id和name都相同,就退出。
+		break;
 	  if(i==MATE_NUMBER)
 	  {
 		for(i=0;i<MATE_NUMBER;i++)
 		{
-		  if(strcmp((p+i)->name,mate.name)!=0)//没有相同的名字
+		  if(strcmp((p+i)->name,mate.name)==0)//没有相同的名字
 		  {
 			flag2=1;
 			break;
 		  }
-		  else//有相同的名字
-		  {
-			printf("所输入的物料名重复,请重新输入.\n");
-			break;
-		  }
 		}
+		if(flag2==0)
+		  break;
 	  }
-	  if(flag1==1||flag2==1)//id和name都相同,就退出。
-		break;
 	}
   }
 
@@ -731,7 +728,8 @@ void matemodify(MATE *pm)   //物料修改
 			flag1=1;//id和name与所存储的id和name都相同
 		  break;
 		}
-		else//没有相同id;
+	 }
+		if(i==MATE_NUMBER)//没有相同id;
 		{
 		  for(i=0;i<MATE_NUMBER;i++)
 		  {
@@ -746,9 +744,7 @@ void matemodify(MATE *pm)   //物料修改
 			  break;
 			}
 		  }
-		  break;
 		}
-	  }
 	  if(flag1==1||flag2==1)//id和name都相同,就退出。
 		break;
 	}
@@ -756,7 +752,7 @@ void matemodify(MATE *pm)   //物料修改
   while(1)//对物料重量输入进行检测
   {
 	__fpurge(stdin);
-	int flag1=0,flag2=0;//设立一个判断id所对应的weight是否相同的标签
+	int flag1=0;//设立一个判断id所对应的weight是否相同的标签
 	while(1)
 	{
 	  printf("请输入你所要修改的重量:\n");
@@ -788,14 +784,9 @@ void matemodify(MATE *pm)   //物料修改
 			flag1=1;//id和weight与所存储的id和weight都相同
 		  break;
 		}
-		else//没找到相同id
-		{
-		  flag2=1;
-		  break;
-		}
 	  }
 	}
-	if(flag1==1||flag2==1)
+	if(flag1==1)
 	  break;
   }
   while(1)//对物料数量输入进行检测
